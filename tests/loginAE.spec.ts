@@ -1,6 +1,7 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { Hooks } from '../utils/hooks';
+
 
 const hooks = new Hooks();
 test.beforeAll(async ({ browser }) =>{
@@ -18,9 +19,6 @@ test.afterEach(async ({}, testInfo) => {
 test.afterAll(async () => {
   await hooks.afterAll();
 })
-
-
-
 
 test.describe('Automation Exercice Login', () =>{
     test('Successful Login with valid credentials', async ({ page }) => {

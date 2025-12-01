@@ -17,4 +17,31 @@ export class Hooks {
             });
          this.page = await this.context.newPage();
     }
+    /**
+     * Action executed before  each test
+     */
+
+    async beforeEach() {
+        await this.page?.goto('/login');
+   
+    }
+
+     /**
+     * Action executed after each test
+     */
+    async afterEach(testName: string, testStatus: string ) {
+     if(testStatus === "failed") {
+        await this.page?.screenshot({path:`test-results/screenshots/${testName}.png`,
+        });
+     }
+    }
+    /**
+     * CleanUp after all test
+     */
+
+    async afterAll() {
+        await this.context?.close();
+        await this.browser?.close();
+    }
+
 }
